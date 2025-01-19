@@ -1,9 +1,15 @@
 const catContainer = document.getElementById("cat_container");
-const favoriteContainer = document.getElementById("favorite-cats-container");
+const favoriteCatsContainer = document.getElementById(
+  "favorite_cats_container"
+);
+const favoriteCatsBtn = document.querySelector(".like_cat-btn");
+const allCatsBtn = document.querySelector(".all_cat-btn");
 
 const API_KEY =
   "live_4WcBlncOaCyN9rrTlXFHhNOTTi23otwDdF56QjP7TAWgewELjY8Dw7B90P8omjLF";
 
+let favoriteCats = JSON.parse(localStorage.getItem("favoriteCats")) || [];
+console.log(favoriteCats);
 async function getCats() {
   const response = await fetch(
     "https://api.thecatapi.com/v1/images/search?limit=15",
@@ -17,7 +23,7 @@ async function getCats() {
   return data;
 }
 
-async function loadCats() {
+async function displayCats() {
   const cats = await getCats();
   if (cats && cats.length > 0) {
     catContainer.innerHTML = "";
@@ -33,23 +39,69 @@ async function loadCats() {
       img.style.height = "225px";
       img.classList.add("cat-image");
 
-      catDiv.appendChild(img);
-
       const heartIcon = document.createElement("div");
       heartIcon.style.height = "48px";
       heartIcon.style.width = "48px";
       heartIcon.classList.add(`heart-icon-${index + 1}`);
       heartIcon.id = "heart";
-      heartIcon.style.backgroundImage = `url('/img/heart1.svg')`;
+      //heartIcon.style.backgroundImage = `url('/img/heart1.svg')`;
 
+      heartIcon.addEventListener("click", () => addToFavorites(cat, index));
+
+      catDiv.appendChild(img);
       catDiv.appendChild(heartIcon);
-
       catContainer.appendChild(catDiv);
     });
   } else {
     console.error("Не удалось загрузить изображения.");
   }
 }
+
+function displayFavoriteCats() {
+  favoriteCatsContainer.innerHTML = "";
+  favoriteCats.forEach((cat) => {
+    const catDiv = document.createElement("div");
+    catDiv.classList.add("cat-image-container");
+
+    const img = document.createElement("img");
+    img.src = cat.url;
+    img.alt = "Favorite Cat";
+
+    img.classList.add("cat-image");
+
+    catDiv.appendChild(img);
+    favoriteCatsContainer.appendChild(catDiv);
+  });
+}
+
+function addToFavorites(cat, index) {
+  if (!favoriteCats.some((favoriteCat) => favoriteCat.id === cat.id)) {
+    favoriteCats.push(cat);
+    localStorage.setItem("favoriteCats", JSON.stringify(favoriteCats));
+    alert("Котик добавлен в любимые!");
+  }
+}
+
+async function loadCats() {
+  const cats = await getCats();
+  if (cats && cats.length > 0) {
+    displayCats(cats);
+  } else {
+    console.error("Не удалось загрузить изображения.");
+  }
+}
+
+favoriteCatsBtn.addEventListener("click", () => {
+  catContainer.style.display = "none";
+  favoriteCatsContainer.style.display = "grid";
+  displayFavoriteCats();
+});
+
+allCatsBtn.addEventListener("click", () => {
+  favoriteCatsContainer.style.display = "none";
+  catContainer.style.display = "grid";
+  loadCats();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   loadCats();

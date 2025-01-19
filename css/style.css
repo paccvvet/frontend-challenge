@@ -103,6 +103,7 @@ body {
 .cat-image-container {
   position: relative;
   width: 225px;
+  height: 225px;
 }
 .cat-image {
   position: relative;
@@ -110,7 +111,7 @@ body {
   height: 225px;
   overflow: hidden;
 }
-.cat-image:hover {
+.cat-image-container:hover {
   transform: scale(1.14);
   box-shadow: 0px 6px 5px -2px #c1bbb8;
 }
@@ -119,8 +120,16 @@ body {
   bottom: 10px;
   left: 175px;
   display: none;
+  background-image: url("/img/heart.svg");
 }
 
 .cat-image-container:hover #heart {
   display: block;
+}
+
+#favorite_cats_container {
+  display: none;
+}
+#heart:hover {
+  background-image: url("/img/heart_cliked.svg");
 }
