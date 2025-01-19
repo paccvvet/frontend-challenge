@@ -63,19 +63,9 @@ body {
   display: flex;
   gap: 0 20px;
 }
-/* .cats-btn {
-  position: absolute;
-  cursor: pointer;
-  background: black;
-  display: flex;
-  text-transform: uppercase;
-  width: 193px;
-  height: 64px;
-  left: 64px;
-} */
+
 .cats-btn {
   cursor: pointer;
-  /* border: none; */
   position: relative;
   display: flex;
   text-transform: uppercase;
@@ -92,13 +82,28 @@ body {
 }
 .all_cat-btn:hover {
   background-color: #1e88e5;
+  color: #ffffff;
 }
 .like_cat-btn:hover {
+  color: #ffffff;
   background-color: #1e88e5;
 }
-.cat_container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+#cat_container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 52px;
+  margin-left: 62px;
+  margin-right: 62px;
+  margin-bottom: 72px;
+  justify-content: center;
+  align-items: center;
+}
+.cat-image:hover {
+  transform: scale(1.14);
+  box-shadow: 0px 6px 5px -2px #c1bbb8;
+}
+#cat-favorite_container {
+  display: none;
 }
