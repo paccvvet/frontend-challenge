@@ -48,10 +48,7 @@ button {
 body {
   font-family: "Roboto";
   font-weight: 400;
-  font-size: 4px;
-  line-height: 21px;
-  color: #ffffff;
-  letter-spacing: 0.25px;
+  font-size: 14px;
 }
 
 .nav {
@@ -68,17 +65,19 @@ body {
   cursor: pointer;
   position: relative;
   display: flex;
-  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
   height: 64px;
   left: 64px;
 }
 .all_cat-btn {
   color: #ffffffb2;
-  padding: 22.5px 25px;
+  padding: 22.5px 12px;
 }
 .like_cat-btn {
   color: #ffffffb2;
-  padding: 22.5px 45px;
+  padding: 22.5px 10px;
 }
 .all_cat-btn:hover {
   background-color: #1e88e5;
@@ -88,7 +87,8 @@ body {
   color: #ffffff;
   background-color: #1e88e5;
 }
-#cat_container {
+#cat_container,
+#favorite_cats_container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -120,16 +120,29 @@ body {
   bottom: 10px;
   left: 175px;
   display: none;
-  background-image: url("/img/heart.svg");
 }
-
+.heart-icon_all {
+  background-image: url("/img/heart.svg");
+  display: none;
+}
+.heart-icon_favorite {
+  background-image: url("/img/heart_cliked.svg");
+}
 .cat-image-container:hover #heart {
   display: block;
 }
-
-#favorite_cats_container {
-  display: none;
-}
-#heart:hover {
+.heart-icon_all:hover {
   background-image: url("/img/heart_cliked.svg");
+}
+.heart-icon_favorite:hover {
+  background-image: url("/img/heart.svg");
+}
+.text {
+  color: black;
+  position: absolute;
+  top: 935px;
+  left: 623px;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.25px;
 }
