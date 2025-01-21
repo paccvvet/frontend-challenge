@@ -122,20 +122,20 @@ body {
   display: none;
 }
 .heart-icon_all {
-  background-image: url("img/heart.svg");
+  background-image: url("../img/heart.svg");
   display: none;
 }
 .heart-icon_favorite {
-  background-image: url("img/heart_cliked.svg");
+  background-image: url("../img/heart_cliked.svg");
 }
 .cat-image-container:hover #heart {
   display: block;
 }
 .heart-icon_all:hover {
-  background-image: url("img/heart_cliked.svg");
+  background-image: url("../img/heart_cliked.svg");
 }
 .heart-icon_favorite:hover {
-  background-image: url("img/heart.svg");
+  background-image: url("../img/heart.svg");
 }
 .text {
   color: black;
